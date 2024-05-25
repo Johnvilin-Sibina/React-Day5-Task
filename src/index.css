@@ -1,0 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Sedan:ital@0;1&display=swap');
+body{
+    font-family: "Playfair Display", serif;
+}
+.title{
+    font-size: 3rem;
+    color: rgb(84, 4, 159);
+}
+.input{
+    border: 1px solid rgb(107, 215, 0);
+    border-radius: 10px;
+    width: 100%;
+}
+.input:hover{
+    border:3px solid green;
+}
+#filter{
+    border-radius: 10px;
+    background-color: rgba(243, 147, 163, 0.805);    
+}
+.card{
+    background-color: rgb(158, 248, 241);
+}
+#status{
+    background-color: rgba(243, 147, 163, 0.805);
+}
