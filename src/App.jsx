@@ -3,34 +3,62 @@ import "./index.css";
 import Input from "./Components/Input";
 import Filter from "./Components/Filter";
 import Card from "./Components/Card";
-const App = () => {
-  const [todo, setTodo] = useState([]); //State to add todo
-  const [name, setName] = useState(""); //State to set name
-  const [description, setDescription] = useState(""); //state to set description
 
-  //function to add a new todo
+const App = () => {
+   // State to add todo
+  const [todos, setTodos] = useState([]);
+
+   // State to store filtered todos
+  const [filteredTodos, setFilteredTodos] = useState([]);
+
+  // State to set name
+  const [name, setName] = useState(""); 
+
+  // State to set description
+  const [description, setDescription] = useState(""); 
+
+  // Function to add a new todo
   const addTodo = (newName, newDescription) => {
     let data = {
-      id: todo.length + 1,
+      id: todos.length + 1,
       name: newName,
       description: newDescription,
-      status: "Not Completed",
+      status: "notcompleted",
     };
-    setTodo([...todo, data]);
+    const updatedTodos = [...todos, data];
+    setTodos(updatedTodos);
+    setFilteredTodos(updatedTodos);
   };
 
+  // Function to handle editing a todo
   const handleEdit = (editedTodo) => {
-    const updatedTodo = todo.map((item) =>
+    const updatedTodos = todos.map((item) =>
       item.id === editedTodo.id ? editedTodo : item
     );
-    setTodo(updatedTodo);
+    setTodos(updatedTodos);
+    setFilteredTodos(updatedTodos);
   };
 
-  //function to delete a todo
+  // Function to delete a todo
   const deleteTodo = (id) => {
-    setTodo(todo.filter((item) => item.id !== id));
+    const updatedTodos = todos.filter((item) => item.id !== id);
+    setTodos(updatedTodos);
+    setFilteredTodos(updatedTodos);
   };
 
+  // Function to handle filtering todos
+  const handleFilter = (status) => {
+    if (status === "all") {
+      setFilteredTodos(todos);
+    } else {
+      const filtered = todos.filter((item) =>
+        status === "completed"
+          ? item.status === "completed"
+          : item.status === "notcompleted"
+      );
+      setFilteredTodos(filtered);
+    }
+  };
 
   return (
     <>
@@ -44,9 +72,9 @@ const App = () => {
             description={description}
             setDescription={setDescription}
           />
-          <Filter todo={todo} setTodo={setTodo} />
+          <Filter handleFilter={handleFilter} />
           <div className="row">
-            {todo.map((element, index) => {
+            {filteredTodos.map((element) => {
               return (
                 <Card
                   key={element.id}
@@ -64,3 +92,4 @@ const App = () => {
 };
 
 export default App;
+

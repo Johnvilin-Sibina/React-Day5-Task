@@ -1,19 +1,28 @@
 import React, { useState } from "react";
 
 const Card = ({ element, deleteTodo, handleEdit }) => {
-  //State to set name
+  //State to manage todo name
   const [name, setName] = useState(element.name);
-
-  //state to set description
+  //State to manage todo description
   const [description, setDescription] = useState(element.description);
+  //State to manage to status
+  const [status, setStatus] = useState(element.status);
 
+  //Function to update the edited todo
   const handleSave = () => {
-    const editedTodo = { ...element, name, description };
+    const editedTodo = { ...element, name, description, status };
     handleEdit(editedTodo);
   };
+
+  //Function to set the changed status value
+  const handleStatusChange = (e) => {
+    setStatus(e.target.value);
+    handleEdit({ ...element, status: e.target.value });
+  };
+
   return (
-    <div key={element.id} className="col-md-4 mb-3">
-      <div className="card h-100">
+    <div className="col-md-4 mb-3 mt-5">
+      <div className="card h-100 shadow">
         <div className="card-body">
           <p className="card-text">
             <b>Name:</b> {element.name}
@@ -24,7 +33,7 @@ const Card = ({ element, deleteTodo, handleEdit }) => {
           <label htmlFor="status">
             <b>Status:</b>
           </label>
-          <select id="status">
+          <select id="status" value={status} onChange={handleStatusChange}>
             <option value="notcompleted">Not Completed</option>
             <option value="completed">Completed</option>
           </select>

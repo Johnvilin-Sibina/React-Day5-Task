@@ -1,9 +1,9 @@
 import React from "react";
-//import {useState} from"react";
 import "../index.css";
+
 const Input = ({ addTodo, name, setName, description, setDescription }) => {
-  // const [name, setName] = useState("");
-  // const [description, setDescription] = useState("");
+
+  //Function to add todo
   const handleSubmit = () => {
     addTodo(name, description);
     setName("");
@@ -32,7 +32,7 @@ const Input = ({ addTodo, name, setName, description, setDescription }) => {
             onChange={(e) => setDescription(e.target.value)}
           ></input>
         </div>
-        <div className="col-md-2">
+        <div className="col-md-2 mb-4">
           <button
             type="button"
             className="btn btn-success"
@@ -41,6 +41,7 @@ const Input = ({ addTodo, name, setName, description, setDescription }) => {
             Add Todo
           </button>
         </div>
+        <hr className="divider"/>
       </div>
     </>
   );
