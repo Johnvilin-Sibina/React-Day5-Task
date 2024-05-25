@@ -19,4 +19,4 @@
   <li>Using the dropdown below the input fields the todos can be filtered and displayed based on their status.</li>
 </ul>
 <h4>Deployment URL</h4>
-<a href=""></a>
+<a href="https://cute-manatee-139673.netlify.app/">https://cute-manatee-139673.netlify.app/</a>
